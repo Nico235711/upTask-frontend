@@ -1,20 +1,21 @@
 import ProjectForm from "@/components/projects/ProjectForm"
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
+import { ProjectFormData } from "types"
 
 const CreateProject = () => {
 
-  const initialValues = {
+  const initialValues: ProjectFormData = {
     projectName: "",
     clientName: "",
     description: ""
   }
-  
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({defaultValues: { initialValues }})
 
-  const handleForm = (data) => { 
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues: initialValues })
+
+  const handleForm = (data: ProjectFormData) => {
     console.log(data);
-    
+
   }
 
   return (
@@ -38,7 +39,7 @@ const CreateProject = () => {
 
         <input
           type="submit"
-          value="Crear Proyecto" 
+          value="Crear Proyecto"
           className="bg-purple-400 hover:bg-purple-500 py-2 text-white font-bold cursor-pointer transition-all w-full"
         />
       </form>
