@@ -1,3 +1,4 @@
+import ProjectForm from "@/components/projects/ProjectForm"
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 
@@ -29,7 +30,10 @@ const CreateProject = () => {
       <form
         className="mt-10 bg-white rounded-lg shadow p-5"
         onSubmit={handleSubmit(handleForm)}
-        noValidate>
+        noValidate
+      >
+
+        <ProjectForm register={register} errors={errors} />
 
 
         <input
