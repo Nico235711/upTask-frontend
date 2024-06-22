@@ -9,7 +9,7 @@ const Dashboard = () => {
 
       <Link
         to="projects/create"
-        className="bg-purple-400 hover:bg-purple-500 text-white px-5 py-1 mt-5 inline-block font-bold"
+        className="bg-purple-400 hover:bg-purple-500 text-white px-5 py-1 mt-5 inline-block font-bold transition-all"
       >Crear Proyecto</Link>
     </>
   )
