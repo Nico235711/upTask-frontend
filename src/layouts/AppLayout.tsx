@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom"
 import Logo from "@/components/Logo"
 import { NavMenu } from "@/components/NavMenu"
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 const AppLayout = () => {
 
@@ -15,7 +17,7 @@ const AppLayout = () => {
           <NavMenu />
         </div>
       </header>
-      
+
       <section className="max-w-6xl mx-auto mt-20 p-5">
         <Outlet />
       </section>
@@ -24,6 +26,12 @@ const AppLayout = () => {
       <footer className="py-5 bg-gray-800">
         <p className="text-center text-white text-lg">Todos los derechos reservados {new Date().getFullYear()}</p>
       </footer>
+
+      <ToastContainer
+        theme="dark"
+        autoClose={2500}
+        pauseOnHover={false}
+      />
     </>
   )
 }
