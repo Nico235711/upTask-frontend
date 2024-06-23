@@ -1,4 +1,5 @@
 import { getProjectById } from "@/api/ProjectAPI"
+import EditProjectForm from "@/components/projects/EditProjectForm"
 import { useQuery } from "@tanstack/react-query"
 import { useParams } from "react-router-dom"
 
@@ -11,9 +12,7 @@ const EditProject = () => {
     retry: false
   })
 
-  return (
-    <div>EditProject</div>
-  )
+  if (data) return <EditProjectForm />
 }
 
 export default EditProject
