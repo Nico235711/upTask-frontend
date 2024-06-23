@@ -1,6 +1,7 @@
 import { createProject } from "@/api/ProjectAPI"
 import ProjectForm from "@/components/projects/ProjectForm"
 import { ProjectFormData } from "@/types/index"
+import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
@@ -15,13 +16,17 @@ const CreateProject = () => {
     description: ""
   }
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues: initialValues })
+  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues })
+  // tambien puedo extraer mutate y no usar una variable
+  const { mutate } = useMutation({
+    mutationFn: createProject,
+    onSuccess: (response) => {
+      toast.success(response)
+      navigate("/")
+    }
+  })
 
-  const handleForm = async (data: ProjectFormData) => {
-    const response = await createProject(data)
-    toast.success(response)
-    navigate("/")
-  }
+  const handleForm = (data: ProjectFormData) => mutate(data)
 
   return (
     <div className="max-w-3xl mx-auto">
