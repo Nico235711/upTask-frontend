@@ -12,9 +12,6 @@ const Dashboard = () => {
     queryKey: ["projects"],
     queryFn: getAllProjects
   })
-  console.log(data);
-  console.log(isLoading);
-
 
   return (
     <>
@@ -63,7 +60,7 @@ const Dashboard = () => {
                           </Link>
                         </MenuItem>
                         <MenuItem>
-                          <Link to={``}
+                          <Link to={`/projects/${project._id}/edit`}
                             className='block px-3 py-1 text-sm leading-6 text-gray-900'>
                             Editar Proyecto
                           </Link>
