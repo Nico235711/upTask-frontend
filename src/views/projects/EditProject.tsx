@@ -11,8 +11,10 @@ const EditProject = () => {
     queryFn: () => getProjectById(projectId),
     retry: false
   })
+  // console.log(data);
+  
 
-  if (data) return <EditProjectForm />
+  if (data) return <EditProjectForm data={data} />
 }
 
 export default EditProject
