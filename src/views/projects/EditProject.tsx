@@ -14,7 +14,7 @@ const EditProject = () => {
   // console.log(data);
   
 
-  if (data) return <EditProjectForm data={data} />
+  if (data) return <EditProjectForm data={data} projectId={projectId} />
 }
 
 export default EditProject

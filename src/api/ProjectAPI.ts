@@ -1,7 +1,6 @@
 import { api } from "@/lib/axios";
 import { Project, ProjectFormData, dashboardProjectSchema } from "@/types/index";
 
-
 export async function createProject(formData: ProjectFormData) {
   try {
     const { data } = await api.post("/projects", formData)
@@ -30,5 +29,19 @@ export async function getProjectById(id: Project["_id"]) {
   } catch (error) {
     console.log(error);
     
+  }
+}
+
+type ProjectApiType = {
+  formData: ProjectFormData
+  projectId: Project["_id"]
+}
+
+export async function updateProjectById({ formData, projectId }: ProjectApiType) {
+  try {
+    const { data } = await api.put(`/projects/${projectId}`, formData)
+    return data
+  } catch (error) {
+    console.log(error);
   }
 }
