@@ -1,9 +1,12 @@
 import { Fragment } from 'react';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import TaskForm from './TaskForm';
 import { useForm } from 'react-hook-form';
 import { TaskFormData } from '@/types/index';
+import { useMutation } from '@tanstack/react-query';
+import { createTask } from '@/api/TaskAPI';
+import { toast } from 'react-toastify';
 
 export default function AddTaskModal() {
 
@@ -12,18 +15,36 @@ export default function AddTaskModal() {
     description: ""
   }
 
-  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues })
+  const { mutate } = useMutation({
+    mutationFn: createTask,
+    onError: (error) => {
+      toast.error(error.message)
+    },
+    onSuccess: (data) => {
+      toast.success(data)
+      reset()
+      navigate(location.pathname , { replace: true })
+    }
+  })
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({ defaultValues: initialValues })
   const navigate = useNavigate()
+  // leer si el modal existe
   const location = useLocation()
-  // busco en la url los parametros deseados
   const queryParams = new URLSearchParams(location.search)
-  // me fijo si el parametro que estoy buscando existe
   const modalTask = queryParams.get("newTask")
   const show = modalTask ? true : false
 
+  // obtener el id del proyecto de la url
+  const params = useParams()
+  const projectId = params.projectId!
+
   const handleCreateTask = (formData: TaskFormData) => {
-    console.log(formData);
-    
+    const data = {
+      formData,
+      projectId
+    }
+
+    mutate(data)
   }
   
   return (
