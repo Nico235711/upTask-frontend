@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom"
 const ProjectDetails = () => {
   const navigate = useNavigate()
   const params = useParams()
-  const projectId = params.projectId!
+  const projectId = params.projectId!  
   const { data, isLoading } = useQuery({
     queryKey: ["editProject", projectId],
     queryFn: () => getProjectById(projectId),
