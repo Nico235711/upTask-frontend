@@ -1,5 +1,6 @@
 import { getProjectById } from "@/api/ProjectAPI"
 import AddTaskModal from "@/components/tasks/AppTaskModal"
+import TaskList from "@/components/tasks/TaskList"
 import { useQuery } from "@tanstack/react-query"
 import { useNavigate, useParams } from "react-router-dom"
 
@@ -7,7 +8,7 @@ const ProjectDetails = () => {
   const navigate = useNavigate()
   const params = useParams()
   const projectId = params.projectId!  
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["editProject", projectId],
     queryFn: () => getProjectById(projectId),
     retry: false
@@ -26,6 +27,8 @@ const ProjectDetails = () => {
           onClick={() => navigate("?newTask=true")}
         >Asignar Tarea</button>
       </nav>
+
+      <TaskList tasks={data.tasks} />
 
       <AddTaskModal />
     </>
