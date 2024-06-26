@@ -3,7 +3,6 @@ import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@
 import { useLocation, useNavigate } from 'react-router-dom';
 import TaskForm from './TaskForm';
 import { useForm } from 'react-hook-form';
-import { error } from 'console';
 import { TaskFormData } from '@/types/index';
 
 export default function AddTaskModal() {

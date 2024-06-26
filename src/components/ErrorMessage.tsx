@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react"
 const ErrorMessage = ({ children }: PropsWithChildren) => {
 
   return (
-    <p className="w-full bg-red-600 text-white font-bold my-4">{children}</p>
+    <p className="text-center my-4 bg-red-100 text-red-600 font-bold p-3 uppercase text-sm">{children}</p>
   )
 }
 
