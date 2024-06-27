@@ -8,12 +8,15 @@ import {
   Transition
   } from '@headlessui/react';
 import { Task } from '@/types/index';
+import { useNavigate } from 'react-router-dom';
 
 type TaskCardProps = {
   task: Task
 }
 
 const TaskCard = ({ task }: TaskCardProps) => {
+
+  const navigate = useNavigate()
 
   return (
     <li className="p-5 bg-white border border-slate-300 flex justify-between gap-3">
@@ -42,7 +45,11 @@ const TaskCard = ({ task }: TaskCardProps) => {
                 </button>
               </MenuItem>
               <MenuItem>
-                <button type='button' className='block px-3 py-1 text-sm leading-6 text-gray-900'>
+                <button
+                  type='button'
+                  className='block px-3 py-1 text-sm leading-6 text-gray-900'
+                  onClick={() => navigate(`?taskId=${task._id}`)}
+                >
                   Editar Tarea
                 </button>
               </MenuItem>
