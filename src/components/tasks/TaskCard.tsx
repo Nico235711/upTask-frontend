@@ -41,11 +41,11 @@ const TaskCard = ({ task }: TaskCardProps) => {
                 </button>
               </MenuItem>
 
-              <MenuItem>
+              <Menu.Item>
                 <button type='button' className='block px-3 py-1 text-sm leading-6 text-red-500'>
                   Eliminar Tarea
                 </button>
-              </MenuItem>
+              </Menu.Item>
             </MenuItems>
           </Transition>
         </Menu>

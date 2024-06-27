@@ -9,7 +9,7 @@ const AppLayout = () => {
   return (
     <>
       <header className="bg-gray-800 p-5">
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between items-center">
+        <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center">
           <div className="w-64">
             <Logo />
           </div>
@@ -18,7 +18,7 @@ const AppLayout = () => {
         </div>
       </header>
 
-      <section className="max-w-6xl mx-auto mt-20 p-5">
+      <section className="max-w-screen-2xl mx-auto p-5 m-10">
         <Outlet />
       </section>
 
