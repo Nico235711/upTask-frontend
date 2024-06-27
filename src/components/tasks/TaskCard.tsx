@@ -1,7 +1,13 @@
-import { Task } from "@/types/index"
-import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react"
-import { EllipsisVerticalIcon } from "@heroicons/react/20/solid"
-import { Fragment } from "react"
+import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
+import { Fragment } from 'react';
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Transition
+  } from '@headlessui/react';
+import { Task } from '@/types/index';
 
 type TaskCardProps = {
   task: Task
@@ -41,11 +47,11 @@ const TaskCard = ({ task }: TaskCardProps) => {
                 </button>
               </MenuItem>
 
-              <Menu.Item>
+              <MenuItem>
                 <button type='button' className='block px-3 py-1 text-sm leading-6 text-red-500'>
                   Eliminar Tarea
                 </button>
-              </Menu.Item>
+              </MenuItem>
             </MenuItems>
           </Transition>
         </Menu>

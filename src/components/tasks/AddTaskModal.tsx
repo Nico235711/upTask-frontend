@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import TaskForm from './TaskForm';
 import { useForm } from 'react-hook-form';
 import { TaskFormData } from '@/types/index';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createTask } from '@/api/TaskAPI';
 import { toast } from 'react-toastify';
 
@@ -14,6 +14,7 @@ export default function AddTaskModal() {
     name: "",
     description: ""
   }
+  const queryClient = useQueryClient()
 
   const { mutate } = useMutation({
     mutationFn: createTask,
@@ -24,6 +25,7 @@ export default function AddTaskModal() {
       toast.success(data)
       reset()
       navigate(location.pathname , { replace: true })
+      queryClient.invalidateQueries({ queryKey: ["editProject", projectId] })
     }
   })
   const { register, handleSubmit, formState: { errors }, reset } = useForm({ defaultValues: initialValues })
@@ -94,7 +96,7 @@ export default function AddTaskModal() {
                     <input
                       type="submit"
                       value="Guardar Tarea" 
-                      className='bg-purple-400 hover:bg-purple-500 text-white px-5 py-1 mt-5 inline-block font-bold transition-all w-full cursor-pointer'
+                      className='bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white uppercase font-bold cursor-pointer transition-colors'
                     />
                   </form>
 
