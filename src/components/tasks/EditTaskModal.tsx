@@ -1,18 +1,29 @@
 import { Fragment } from 'react';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Task, TaskFormData } from '@/types/index';
+import { useForm } from 'react-hook-form';
+import TaskForm from './TaskForm';
 
-export default function EditTaskModal() {
+type EditTaskModalProps = {
+  data: Task
+}
 
+export default function EditTaskModal({ data }: EditTaskModalProps) {
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({ defaultValues: {
+    name: data.name,
+    description: data.description
+  }})
   const navigate = useNavigate()
-  // leer si el modal existe
-  const location = useLocation()
-  const queryParams = new URLSearchParams(location.search)
-  const editTaskModal = queryParams.get("taskId")
-  const show = editTaskModal ? true : false
+
+  const handleEditTask = (formData: TaskFormData) => {
+    console.log(formData);
+    
+  }
 
   return (
-    <Transition appear show={show} as={Fragment}>
+    <Transition appear show={true} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={() => navigate(location.pathname , { replace: true })}>
         <TransitionChild
           as={Fragment}
@@ -51,10 +62,11 @@ export default function EditTaskModal() {
 
                 <form
                   className="mt-10 space-y-3"
+                  onSubmit={handleSubmit(handleEditTask)}
                   noValidate
                 >
 
-
+                  <TaskForm register={register} errors={errors} />
 
                   <input
                     type="submit"
