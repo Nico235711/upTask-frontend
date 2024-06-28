@@ -35,19 +35,18 @@ export async function getTaskById({ projectId, taskId }: Pick<TaskAPI, "taskId" 
   }
 }
 
-// type ProjectApiType = {
-//   formData: ProjectFormData
-//   projectId: Project["_id"]
-// }
-
-// export async function updateProjectById({ formData, projectId }: ProjectApiType) {
-//   try {
-//     const { data } = await api.put<string>(`/projects/${projectId}`, formData)
-//     return data
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+export async function updateTaskById({ formData, projectId, taskId }: Pick<TaskAPI, "formData" | "projectId" | "taskId">) {
+  try {
+    const url = `/projects/${projectId}/tasks/${taskId}`
+    const { data } = await api.put<string>(url, formData)
+    return data
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error);
+      
+    }
+  }
+}
 
 // export async function deleteProjectById(id: Project["_id"]) {
 //   try {
