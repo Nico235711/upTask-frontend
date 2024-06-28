@@ -14,7 +14,8 @@ const EditTaskData = () => {
 
   const { data } = useQuery({
     queryKey: ["task", taskId],
-    queryFn: () => getTaskById({ projectId, taskId })
+    queryFn: () => getTaskById({ projectId, taskId }),
+    enabled: !!taskId
   })
 
   if (data) return (
