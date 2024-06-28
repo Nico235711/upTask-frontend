@@ -10,7 +10,7 @@ const ProjectDetails = () => {
   const params = useParams()
   const projectId = params.projectId!  
   const { data } = useQuery({
-    queryKey: ["editProject", projectId],
+    queryKey: ["project", projectId],
     queryFn: () => getProjectById(projectId),
     retry: false
   })
