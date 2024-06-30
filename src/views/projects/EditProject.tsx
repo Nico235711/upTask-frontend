@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 const EditProject = () => {
   const params = useParams()
   const projectId = params.projectId!
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["editProject", projectId],
     queryFn: () => getProjectById(projectId),
     retry: false
