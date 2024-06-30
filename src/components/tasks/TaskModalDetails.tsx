@@ -1,16 +1,27 @@
 import { Fragment } from 'react';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getTaskById } from '@/api/TaskAPI';
 
 
 export default function TaskModalDetails() {
+
+  const params = useParams()
+  const projectId = params.projectId!
 
   const navigate = useNavigate()
   // leer si el modal existe
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
-  const viewModalTask = queryParams.get("viewTask")
-  const show = viewModalTask ? true : false
+  const taskId = queryParams.get("viewTask")!
+  const show = taskId ? true : false
+
+  const { data } = useQuery({
+    queryKey: ["task", taskId],
+    queryFn: () => getTaskById({ projectId, taskId }),
+    enabled: !!taskId
+  })
 
   return (
     <>
